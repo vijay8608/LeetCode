@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool judgeCircle(string moves) {
+        int v = 0 , h = 0;
+        for (int ch: moves){
+            switch(ch){
+                case 'U': ++v ; break;
+                case 'D': --v ; break;
+                case 'L': --h ; break;
+                case 'R': ++h ; break; 
+            }
+        }
+        
+        if (v == 0 && h == 0) return true;
+        else return false;
+    }
+};

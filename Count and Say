@@ -1,0 +1,40 @@
+class Solution {
+public:
+    string countAndSay(int n) {
+    string str1 = "1";
+    //string str2 = "";
+    int count = 1;
+    //int n = 10;
+    while (n-1){
+        //long temp = str1.length();
+        
+        for (int i = 0 ; i < str1.length() ; i++){
+            
+            if (str1[i+1] == '\0') {
+                //str2  = to_string(count) + str1;
+                str1.insert(i,to_string(count));
+                //cout << "end check " << str1 << endl;
+                count = 1;
+                i++;
+            } else if (str1[i] == str1[i+1]){
+                str1.erase(i,1);
+                //cout << "Equal comparison " << str1 << endl;
+                count++;
+                i--;
+            } else if (str1[i] != str1[i+1]){
+                str1.insert(i,to_string(count));
+                i++;
+                count = 1;
+                //cout << "not equal comparison " <<str1 << endl;
+                //cout << "I is " << i << endl;
+            }
+            
+        }
+    cout << str1 << endl;
+        //cout << "=========loop==========" << endl;
+        //str1 = str2;
+        n--;
+    }
+        return str1;
+    }
+};

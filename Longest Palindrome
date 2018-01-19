@@ -1,0 +1,42 @@
+class Solution {
+public:
+    int longestPalindrome(string s) {
+        
+        if (s.length() == 0 ) return 0;
+        
+        int result = 0;
+        int numberOfOdd = 0;
+        map<char, int> alphabets;
+        
+        for ( int i = 0 ; i < s.length() ; i++)
+        {
+            alphabets[s[i]] +=1 ;
+        }
+   
+        map<char, int>::iterator it = alphabets.begin();
+        
+         for ( it ; it != alphabets.end() ; it++)
+        {
+            if (it->second >=  2 ){
+                if (it->second % 2 == 0){
+                    result += it->second;
+                    alphabets[it->first] = 0;
+                } else {
+                    result += ( it->second - (it->second % 2));
+                    alphabets[it->second] = it->second % 2;
+                }
+            }
+             
+             if (it->second %2 != 0 && numberOfOdd == 0){
+                 numberOfOdd = 1;
+             }
+             
+             //cout << it->first << " - " << it->second << endl;
+        }
+        
+        
+        result = result + numberOfOdd;
+        
+        return result;
+    }
+};

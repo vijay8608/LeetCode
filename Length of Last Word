@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int count = 0;
+        bool temp = 0;
+        for (int i = s.length()-1 ; i >= 0 ; i--){
+            
+            if (isalpha(s[i])) {
+                count++;
+                temp = 1;
+            }
+            
+            if (temp && isspace(s[i])) break;
+        }
+        
+        return count;
+    }
+};

@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<int> anagramMappings(vector<int>& A, vector<int>& B) {
+        map<int, int> index_mapping;
+        vector<int> result;
+        
+        for(int i =0; i< B.size(); i++){
+            index_mapping[B[i]]=i;
+        }
+        
+        for (int i = 0; i < A.size(); i++){
+            result.push_back(index_mapping[A[i]]);
+        }
+        
+//         for (int i = 0; i < result.size(); i++){
+//             cout << result[i] << " ";
+//         }
+        
+//         map<int, int>::iterator it;
+        
+//         for(it = index_mapping.begin() ; it != index_mapping.end() ; it++){
+//             //cout << it->first << " - " << it->second << endl;
+            
+//         }
+        
+        return result;
+    }
+};
