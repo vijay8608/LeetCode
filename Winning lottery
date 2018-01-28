@@ -1,0 +1,61 @@
+//
+//  stringsettest.cpp
+//  LinkedList
+//
+//  Created by Vijay Yadav on 1/27/18.
+//  Copyright © 2018 Vijay Yadav. All rights reserved.
+//
+
+#include <iostream>
+#include <set>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+
+int winningLotteryTicket(vector <string> tickets) {
+    
+    if (tickets.size() == 1 && tickets[0].length() == 10) return 1;
+
+    vector<set<char> > result(tickets.size());
+    
+    for (int i = 0; i < tickets.size(); i++) {
+        set<char> temp;
+        for (int j = 0 ; j < tickets[i].length(); j++){
+            char t =(tickets[i][j]);
+            temp.insert(t);
+        }
+        result[i] = temp;
+    }
+    
+    int count = 0;
+    
+    for (int i = 0 ; i < result.size() ; i++){
+        set<char> temp2 = result[i];
+        for (int j = i+1 ; j < result.size() ; j++){
+            temp2.insert(result[j].begin(),result[j].end());
+            if (temp2.size() == 10){
+                count++;
+            }
+            
+            temp2.clear();
+            temp2 = result[i];
+        }
+    }
+    return count;
+}
+
+
+int main() {
+    int n;
+    cin >> n;
+    vector<string> tickets(n);
+    for(int tickets_i = 0; tickets_i < n; tickets_i++){
+        cin >> tickets[tickets_i];
+    }
+    int result = winningLotteryTicket(tickets);
+    cout << result << endl;
+    return 0;
+}
+
