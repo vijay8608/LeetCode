@@ -1,0 +1,46 @@
+class Solution {
+public:
+    int lengthLongestPath(string input) {
+        map<int,int> levelLength;
+        int count = 0, maxlen = 0, level = 1;
+        bool isFile = false;
+        
+        int i = 0;
+        int length = input.length();
+        
+        while ( i < length){
+            
+           while (input[i] == '\t'){
+                ++level;
+                ++i;
+            } 
+            
+            while( i < length && input[i] != '\n'){
+                if(input[i] == '.'){
+                    isFile = true;
+                }
+                ++count;
+                ++i;
+            }
+            
+            if (isFile){
+                maxlen = max(maxlen, levelLength[level - 1] + count);
+            }else {
+                levelLength[level] = levelLength[level - 1] + count + 1;
+            }
+            
+            count = 0;
+            level = 1;
+            isFile = false;   
+            ++i;
+        }
+        
+        map<int, int>::iterator it = levelLength.begin();
+        
+        for( it ; it != levelLength.end() ; it++ ){
+            cout << it->first << " - " << it->second << endl;
+        }
+        
+        return maxlen;
+    }
+};
